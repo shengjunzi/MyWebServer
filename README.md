@@ -12,19 +12,22 @@
 - 实现了跨平台支持，特别是在MacOS和FreeBSD平台，通过自适应地编译不同的代码，确保系统的可移植性和兼容性。
 
 ### 运行
-首先创建一个build文件夹，防止文件和项目混在一起：
+首先创建一个build文件夹，防止文件和项目混在一起,然后使用CMake生成Makefile：：
+```
   mkdir build
   cd build
-然后使用CMake生成Makefile：
   cmake ..
-生成Makefile后，使用以下命令进行代码格式化:
+```
+生成Makefile后，使用以下命令进行代码格式化,用cpplint、clang-tidy检查代码:
+```
   make format
-然后用cpplint检查代码:
   make cpplint
-最后使用clang-tidy进行代码分析：
   make clang-tidy
+```
 将所有的警告都修改好，重新运行这三个命令直到全部通过。然后使用make指令即可编译整个网络库，会被保存到lib文件夹中，但这里没有可执行文件。如果我们需要编译可执行服务器，需要编译test目录下相应的源文件:
+```
   make server
   make multiple_client
   make single_client
+```
 生成的可执行文件在build/test目录下，这时使用./test/server即可运行服务器。
